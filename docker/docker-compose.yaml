@@ -1,0 +1,36 @@
+# version: '3.9'
+
+networks:
+  proxy:
+    driver: bridge
+
+services:
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - 80:80
+    networks:
+      - proxy
+
+
+  web-mysite-01:
+    image: python:latest
+    volumes:
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - proxy
+
+#  web-mysite-01:
+#    image: nginx:latest
+#    volumes:
+#      - ./default.conf:/etc/nginx/conf.d/default.conf
+#    networks:
+#      - proxy
+#  web-mysite-02:
+#    build: .
+#    volumes:
+#      - ./default.conf:/etc/nginx/conf.d/default.conf
+#    networks:
+#      - proxy
