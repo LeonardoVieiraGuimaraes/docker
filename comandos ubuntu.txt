@@ -1,0 +1,6 @@
+wsl -l -v
+wsl --unregister <distro name>.
+
+python -m pip freeze > requirements.txt
+
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys <PUBKEY>
